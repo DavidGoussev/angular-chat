@@ -1,4 +1,4 @@
-## Angular Chat
+# *Angular Chat*
 
 A starter SPA Angular chat app implementation [https://github.com/dpg5000/angular-chat]
 
