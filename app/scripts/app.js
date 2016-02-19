@@ -30,6 +30,6 @@
     }
     
     angular
-        .module('angularChat', ['firebase', 'ui.router'])
+        .module('angularChat', ['firebase', 'ui.router', 'ui.bootstrap'])
         .config(config);
 })();

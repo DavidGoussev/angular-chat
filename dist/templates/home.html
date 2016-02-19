@@ -1,5 +1,59 @@
-<h1>Home Page</h1>
 
-<ul>
-  <li ng-repeat="room in rooms">room {{ room.$id }} - {{ room.name }}</li>
-</ul>
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-3 sidenav">
+
+            <h1>angularchat</h1>
+
+            <ul class="nav nav-pills nav-stacked">
+                <li ng-repeat="(roomId, room) in rooms">
+                    <button type='button' class='btn btn-default btn-xs' ng-click='deleteRoom(roomId)'>
+                        <span class='glyphicon glyphicon-remove'></span>
+                    </button>
+                    {{ room.name }}
+                </li>
+            </ul><br>
+            
+            
+            
+            <div ng-controller="ModalCtrl">
+                <script type="text/ng-template" id="myModalContent.html">
+                    <div class="modal-header">
+                        <h3 class="modal-title">add chat room</h3>
+                    </div>
+                    <div class="modal-body">
+
+                        <form ng-submit="addRoom()" class="form-group form-group-sm">
+                            <input type="text" ng-model="room.name">
+                            <input type="submit">
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="button" ng-click="ok()">add</button>
+                        <button class="btn btn-warning" type="button" ng-click="cancel()">cancel</button>
+                    </div>
+                </script>
+                <button type="button" class="btn btn-primary" ng-click="open('sm')">add room</button><br>
+            </div>
+
+
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search..">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<footer class="container-fluid">
+    <p>footer text</p>
+</footer>
