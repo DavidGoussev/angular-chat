@@ -2,6 +2,8 @@
     function ModalInstanceCtrl($scope, $uibModalInstance, Room) {
         $scope.rooms = Room.all;
         
+        
+        
         $scope.addRoom = function(){
             Room.create($scope.room).then(function(data){
                 $scope.room.name = ''

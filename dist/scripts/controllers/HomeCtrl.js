@@ -1,28 +1,22 @@
 (function() {
     function HomeCtrl($scope, Room) {
         $scope.rooms = Room.all;
+
+        $scope.selected = {
+            room: $scope.rooms[0],
+        };
         
-// $scope.addRoom function moved to ModalInstanceCtrl for $modal
-//        $scope.addRoom = function(){
-//            Room.create($scope.room).then(function(data){
-//                $scope.room.name = ''
-//            })
-//        };
+        $scope.changeRoom = function changeRoom(room) {
+            $scope.selected.room = room;
+            $scope.messages = Room.getMessages(room.$id);
+        };        
         
         $scope.deleteRoom = function(roomId) {
             Room.delete(roomId).then(function(data){
                 console.log('Room deleted!');
             })
         }
-        
-//  testing $add functionality to AngularFire array:
-//        $scope.rooms.$loaded(function() {
-//            if ($scope.rooms.length === 1) {
-//                $scope.rooms.$add({
-//                    name: "Second"
-//                });
-//            }
-//        });
+
     }
     
     angular

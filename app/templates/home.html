@@ -4,13 +4,16 @@
         <div class="col-sm-3 sidenav">
 
             <h1>angularchat</h1>
+            <br>
 
-            <ul class="nav nav-pills nav-stacked">
-                <li ng-repeat="(roomId, room) in rooms">
+            <ul class="nav-pills nav-stacked inline">
+                <li ng-repeat="(roomId, room) in rooms | orderBy:'name'">
                     <button type='button' class='btn btn-default btn-xs' ng-click='deleteRoom(roomId)'>
                         <span class='glyphicon glyphicon-remove'></span>
                     </button>
-                    {{ room.name }}
+                    <a href="#" ng-click="changeRoom(room)">
+                        {{ room.name }}
+                    </a>
                 </li>
             </ul><br>
             
@@ -25,7 +28,7 @@
 
                         <form ng-submit="addRoom()" class="form-group form-group-sm">
                             <input type="text" ng-model="room.name">
-                            <input type="submit">
+                            
                         </form>
 
                     </div>
@@ -34,9 +37,10 @@
                         <button class="btn btn-warning" type="button" ng-click="cancel()">cancel</button>
                     </div>
                 </script>
-                <button type="button" class="btn btn-primary" ng-click="open('sm')">add room</button><br>
+                <button type="button" class="btn btn-primary" ng-click="open('sm')">add room</button>
+                
             </div>
-
+            <br>
 
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search..">
@@ -48,6 +52,22 @@
             </div>
 
         </div>
+    
+        <div class="col-sm-9">        
+            <h4><span class="label label-primary">{{ selected.room.name }}</span></h4>
+            <hr>
+          
+            <ul>
+                <li ng-repeat="message in messages">
+                    <b>{{ message.username }}</b>
+                    {{ message.content }}<br>
+                    <h6><small>{{ message.sentAt }}</small></h6>
+                </li>
+            </ul>
+            <h4></h4>
+            <h5><span class="label label-danger">.</span> <span class="label label-primary">.</span></h5><br>
+        </div>
+                
     </div>
 </div>
 
@@ -55,5 +75,5 @@
 
 
 <footer class="container-fluid">
-    <p>footer text</p>
+    <p>angularchat 2016 - by DPG5000</p>
 </footer>
