@@ -1,7 +1,6 @@
 (function() {
     function ModalCtrl($scope, $uibModal, $log) {
 
-
         $scope.animationsEnabled = true;
 
         $scope.open = function (size) {
