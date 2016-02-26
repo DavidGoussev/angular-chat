@@ -2,13 +2,13 @@
     function Room($firebaseArray) {
         var firebaseRef = new Firebase("https://intense-heat-8619.firebaseio.com");
         var rooms = $firebaseArray(firebaseRef.child('rooms'));
-        var messages = $firebaseArray(firebaseRef.child('messages'));
+//        var messages = $firebaseArray(firebaseRef.child('messages'));
         
         
         return {
             all: rooms,
             
-            messages: messages,
+//            messages: messages,
             
             create: function(newRoom) {
                 return rooms.$add(newRoom)

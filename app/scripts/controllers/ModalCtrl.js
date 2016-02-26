@@ -10,11 +10,6 @@
                 templateUrl: 'myModalContent.html',
                 controller: 'ModalInstanceCtrl',
                 size: size,
-                resolve: {
-//                    items: function () {
-//                        return $scope.items;
-//                    }
-                }
             });
 
 //            modalInstance.result.then(function (selectedItem) {

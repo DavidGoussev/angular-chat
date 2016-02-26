@@ -4,8 +4,8 @@
         <div class="col-sm-3 sidenav">
 
             <h1>angularchat</h1>
-            <br>
 
+            <br>
             <ul class="nav-pills nav-stacked inline">
                 <li ng-repeat="(roomId, room) in rooms | orderBy:'name'">
                     <button type='button' class='btn btn-default btn-xs' ng-click='deleteRoom(roomId)'>
@@ -55,17 +55,25 @@
     
         <div class="col-sm-9">        
             <h4><span class="label label-primary">{{ selected.room.name }}</span></h4>
-            <hr>
-          
+            <br>
             <ul>
-                <li ng-repeat="message in messages">
-                    <b>{{ message.username }}</b>
-                    {{ message.content }}<br>
-                    <h6><small>{{ message.sentAt }}</small></h6>
+                <li class="messageview" ng-repeat="listMessage in listMessages">
+                    <b>{{ listMessage.username }}</b>
+                    {{ listMessage.content }}<br>
+                    <h6><small>{{ listMessage.sentAt }}</small></h6>
                 </li>
             </ul>
-            <h4></h4>
-<!--            <h5><span class="label label-danger">.</span> <span class="label label-primary">.</span></h5><br>-->
+            <br>
+            <div class="input-group" ng-show="selected.room.name">
+                <input type="text" ng-model="newMessage" class="form-control" placeholder="add chat..">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="addMessage()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </span>
+            </div>
+
+
         </div>
                 
     </div>
@@ -75,5 +83,6 @@
 
 
 <footer class="container-fluid">
+    <br>
     <p>angularchat 2016 - by DPG5000</p>
 </footer>
