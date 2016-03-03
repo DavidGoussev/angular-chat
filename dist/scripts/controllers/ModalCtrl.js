@@ -1,5 +1,11 @@
 (function() {
-    function ModalCtrl($scope, $uibModal, $log) {
+    function ModalCtrl($scope, $uibModal, $log, Auth) {
+        
+        $scope.auth = Auth.auth;
+        
+        $scope.auth.$onAuth(function(authData) {
+            $scope.authData = authData;
+        });
 
         $scope.animationsEnabled = true;
 
@@ -26,5 +32,5 @@
 
     angular
         .module('angularChat')
-        .controller('ModalCtrl', ['$scope', '$uibModal', '$log', ModalCtrl]);
+        .controller('ModalCtrl', ['$scope', '$uibModal', '$log', 'Auth', ModalCtrl]);
 })();

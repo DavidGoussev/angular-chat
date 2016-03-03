@@ -4,16 +4,25 @@
         <div class="col-sm-3 sidenav">
 
             <h1>angularchat</h1>
-
+            <br>
+            <div ng-controller="AuthOpenCtrl">
+                <button type="button" ng-hide="authData" class="btn btn-primary center" ng-click="openAuth()">signup/signin</button>
+            </div>
+            <div>
+                <button type="button" ng-show="authData" class="btn btn-primary center" ng-click="auth.$unauth()">signout</button>
+            </div>
+            
             <br>
             <ul class="nav-pills nav-stacked inline">
                 <li ng-repeat="(roomId, room) in rooms | orderBy:'name'">
-                    <button type='button' class='btn btn-default btn-xs' ng-click='deleteRoom(roomId)'>
-                        <span class='glyphicon glyphicon-remove'></span>
+                    <button type='button' class='btn btn-default btn-xs'>
+                        <span ng-hide="authData" class="glyphicon glyphicon-chevron-right"></span>
+                        <span ng-show="authData" ng-click="deleteRoom(room)" class="glyphicon glyphicon-remove" style="color:#FF0000;"></span>
                     </button>
                     <a href="#" ng-click="changeRoom(room)">
                         {{ room.name }}
                     </a>
+
                 </li>
             </ul><br>
             
@@ -25,45 +34,41 @@
                         <h3 class="modal-title">add chat room</h3>
                     </div>
                     <div class="modal-body">
+                        <div class="input-group">
+    
+                            <input class="form-control" type="text" ng-submit="addRoom()" ng-model="room.name">
 
-                        <form ng-submit="addRoom()" class="form-group form-group-sm">
-                            <input type="text" ng-model="room.name">
-                            
-                        </form>
-
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary" type="button" ng-click="ok()">add</button>
                         <button class="btn btn-warning" type="button" ng-click="cancel()">cancel</button>
                     </div>
                 </script>
-                <button type="button" class="btn btn-primary" ng-click="open('sm')">add room</button>
+                <button type="button" class="btn btn-primary" ng-show="authData" ng-click="open('sm')">add room</button>
                 
             </div>
             <br>
 
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search..">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                </span>
-            </div>
-
         </div>
     
-        <div class="col-sm-9">        
-            <h4><span class="label label-primary">{{ selected.room.name }}</span></h4>
+        <div class="col-sm-9"> 
+            <span>
+                <h3><p class="label label-primary pull-left">{{ selected.room.name }}</p></h3><p ng-show="authData" class="pull-right">logged in as {{ authData.password.email }}</p>
+            </span>
+                
+            <br>
             <br>
             <ul>
                 <li class="messageview" ng-repeat="listMessage in listMessages">
-                    <b>{{ listMessage.username }}</b>
-                    {{ listMessage.content }}<br>
-                    <h6><small>{{ listMessage.sentAt }}</small></h6>
+                    <span>
+                        <h5><b>{{ listMessage.username }}</b></h5><h6><small>  {{ listMessage.sentAt }}</small></h6>
+                    </span>
+                    {{ listMessage.content }}
                 </li>
             </ul>
             <br>
+
             <div class="input-group" ng-show="selected.room.name">
                 <input type="text" ng-model="newMessage" class="form-control" placeholder="add chat..">
                 <span class="input-group-btn">
@@ -72,6 +77,7 @@
                     </button>
                 </span>
             </div>
+         
 
 
         </div>

@@ -1,10 +1,26 @@
 (function() {
-    function HomeCtrl($scope, $cookies, Room, Message) {
+    function HomeCtrl($scope, $cookies, Room, Message, Auth) {
         $scope.rooms = Room.all;
         
-        $scope.messages = Message.messages;
+        $scope.auth = Auth.auth;
         
-        $scope.user = $cookies.get('ngChatCurrentUser');
+        $scope.auth.$onAuth(function(authData) {
+            $scope.authData = authData;
+        });
+        
+////        $scope.user = $cookies.get('ngChatCurrentUser');
+//        
+//        $scope.authenticated = function(authData) {
+//
+//            Auth.isAuth(authData).then(function(data){
+//                console.log('is authenticated!');
+//            })
+//            
+//            $scope.authData = authData;
+//        };
+        
+        
+
 
         $scope.selected = {
             room: $scope.rooms[0],
@@ -15,8 +31,8 @@
             $scope.listMessages = Room.getMessages(room.$id);
         };        
         
-        $scope.deleteRoom = function(roomId) {
-            Room.delete(roomId).then(function(data){
+        $scope.deleteRoom = function(room) {
+            Room.delete(room).then(function(data){
                 console.log('Room deleted!');
             })
         };
@@ -37,5 +53,5 @@
     
     angular
         .module('angularChat')
-        .controller('HomeCtrl', ['$scope', '$cookies', 'Room', 'Message', HomeCtrl]);
+        .controller('HomeCtrl', ['$scope', '$cookies', 'Room', 'Message', 'Auth', HomeCtrl]);
 })();

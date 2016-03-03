@@ -5,7 +5,7 @@
         
         return {
             
-            messages: messages,
+//            messages: messages,
             
             send: function(newMessage) {
                 return messages.$add(newMessage);

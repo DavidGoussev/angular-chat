@@ -5,7 +5,7 @@
         $scope.addRoom = function(){
             Room.create($scope.room).then(function(data){
                 $scope.room.name = '';
-                console.log(' created!');
+                console.log('room created!');
             })
         };
         
