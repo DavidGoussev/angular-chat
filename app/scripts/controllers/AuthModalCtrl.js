@@ -40,15 +40,10 @@
                 email: $scope.email,
                 password: $scope.password
             }).then(function(userData) {
-
                 $scope.logIn();
-                $uibModalInstance.close();
-
             }).catch(function(error) {
                 $scope.error = error;
-            });    
-            
-            
+            });         
         };
         
         $scope.logIn = function(){
@@ -59,15 +54,11 @@
                 email: $scope.email,
                 password: $scope.password
             }).then(function(authData) {
-
-                $uibModalInstance.close();
-
+                $uibModalInstance.close();                    
             }).catch(function(error) {
                 $scope.error = error;
-            });    
-            
+            });       
         }
-        
         
         $scope.authCancel = function() {
             $uibModalInstance.close();

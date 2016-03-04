@@ -16,6 +16,7 @@
         <input type="text" class="pull-right" name="password" id="password" ng-model="password">
 
     </form>
+     <p id="errorNotice" ng-if="note"><small>{{ note }}</small></p>
     <p id="errorNotice" ng-if="error"><small>{{ error.code }}</small></p>
 
 </div>

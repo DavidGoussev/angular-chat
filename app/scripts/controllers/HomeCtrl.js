@@ -1,5 +1,5 @@
 (function() {
-    function HomeCtrl($scope, $cookies, Room, Message, Auth) {
+    function HomeCtrl($scope, Room, Message, Auth) {
         $scope.rooms = Room.all;
         
         $scope.auth = Auth.auth;
@@ -8,20 +8,7 @@
             $scope.authData = authData;
         });
         
-////        $scope.user = $cookies.get('ngChatCurrentUser');
-//        
-//        $scope.authenticated = function(authData) {
-//
-//            Auth.isAuth(authData).then(function(data){
-//                console.log('is authenticated!');
-//            })
-//            
-//            $scope.authData = authData;
-//        };
         
-        
-
-
         $scope.selected = {
             room: $scope.rooms[0],
         };
@@ -39,7 +26,7 @@
         
         $scope.addMessage = function(){
             Message.send({
-                username: $scope.user,
+                username: $scope.authData.password.email,
                 content: $scope.newMessage,
                 roomId: $scope.selected.room.$id,
                 sentAt: Date(Firebase.ServerValue.TIMESTAMP*1000)
@@ -53,5 +40,5 @@
     
     angular
         .module('angularChat')
-        .controller('HomeCtrl', ['$scope', '$cookies', 'Room', 'Message', 'Auth', HomeCtrl]);
+        .controller('HomeCtrl', ['$scope', 'Room', 'Message', 'Auth', HomeCtrl]);
 })();
