@@ -15,7 +15,7 @@
             {{ auth.userData }}
             
             <br>
-            <ul class="nav-pills nav-stacked inline">
+            <div class="nav-pills nav-stacked inline">
                 <li ng-repeat="(roomId, room) in rooms | orderBy:'name'">
                     <button type='button' class='btn btn-default btn-xs'>
                         <span ng-hide="authData" class="glyphicon glyphicon-chevron-right"></span>
@@ -26,7 +26,7 @@
                     </a>
 
                 </li>
-            </ul><br>
+            </div><br>
             
             
             
@@ -56,18 +56,18 @@
     
         <div class="col-sm-9"> 
             <span>
-                <h3><p class="label label-primary pull-left">{{ selected.room.name }}</p></h3><p ng-show="authData" class="pull-right">logged in as {{ authData.password.email }}</p>
+                <h3><p class="label label-primary pull-left">{{ selected.room.name }}</p></h3><p ng-show="authData" class="pull-right">logged in with <b>{{ authData.password.email }}</b></p>
             </span>
                 
             <br>
             <br>
             <ul>
-                <span><li class="messageview" ng-repeat="listMessage in listMessages">
+                <li class="messageview" ng-repeat="listMessage in listMessages">
  
-                    <h5><b>{{ listMessage.username }}</b></h5><h6><small><p> </p>  {{ listMessage.sentAt }}</small></h6>
+                    <h5><b>{{ listMessage.username }}</b></h5><h6><small>{{ listMessage.sentAt }}</small></h6>
                     {{ listMessage.content }}
                     
-                </li></span>
+                </li>
             </ul>
             <br>
 
@@ -91,6 +91,5 @@
 
 
 <footer class="container-fluid">
-    <br>
-    <p>angularchat 2016 - by DPG5000</p>
+    <p>angularchat 2016 - by DPG5000 ---------------------------------</p>
 </footer>

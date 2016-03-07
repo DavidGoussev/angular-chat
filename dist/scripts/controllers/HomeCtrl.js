@@ -1,8 +1,11 @@
 (function() {
-    function HomeCtrl($scope, Room, Message, Auth) {
+    function HomeCtrl($scope, Room, Message, Auth, User) {
         $scope.rooms = Room.all;
         
         $scope.auth = Auth.auth;
+        
+        $scope.users = User.all;
+        
         
         $scope.auth.$onAuth(function(authData) {
             $scope.authData = authData;
@@ -24,9 +27,12 @@
             })
         };
         
+//        $scope.username = User.getUsername($scope.authData);
+        
         $scope.addMessage = function(){
+            console.log($scope.authData.uid);
             Message.send({
-                username: $scope.authData.password.email,
+                username: User.getUsername($scope.authData),
                 content: $scope.newMessage,
                 roomId: $scope.selected.room.$id,
                 sentAt: Date(Firebase.ServerValue.TIMESTAMP*1000)
@@ -40,5 +46,5 @@
     
     angular
         .module('angularChat')
-        .controller('HomeCtrl', ['$scope', 'Room', 'Message', 'Auth', HomeCtrl]);
+        .controller('HomeCtrl', ['$scope', 'Room', 'Message', 'Auth', 'User', HomeCtrl]);
 })();

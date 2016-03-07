@@ -4,10 +4,8 @@
 <div class="modal-body">
 
     <form class="form-group form-group-sm">
-<!--
         username: 
         <input type="text" class="pull-right" name="username" id="username" ng-model="username">
--->
         <p></p>
         email: 
         <input type="text" class="pull-right" name="email" id="email" ng-model="email">
@@ -16,8 +14,8 @@
         <input type="text" class="pull-right" name="password" id="password" ng-model="password">
 
     </form>
-     <p id="errorNotice" ng-if="note"><small>{{ note }}</small></p>
-    <p id="errorNotice" ng-if="error"><small>{{ error.code }}</small></p>
+    <p id="errorNotice" ng-if="note"><small>{{ note }}</small></p>
+    <p id="errorNotice" ng-if="error"><small>{{ error }}</small></p>
 
 </div>
 <div class="modal-footer">
