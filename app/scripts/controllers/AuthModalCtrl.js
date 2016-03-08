@@ -29,7 +29,8 @@
             $scope.authData = authData;
             
             User.addUser($scope.authData, $scope.username, $scope.isNewUser);
-            
+//            
+//            User.getStatus();
         });
         
         $scope.createUser = function(){

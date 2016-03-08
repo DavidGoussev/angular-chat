@@ -5,13 +5,7 @@
         return {
             
             auth: $firebaseAuth(firebaseRef),
-            
-//            isAuth: $firebaseAuth(firebaseRef).$onAuth(function(authData) {
-//                return authData;
-//            })
-            
-            
-        
+                    
             
         }
     }

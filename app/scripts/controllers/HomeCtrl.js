@@ -1,10 +1,18 @@
 (function() {
-    function HomeCtrl($scope, Room, Message, Auth, User) {
+    function HomeCtrl($scope, Room, Message, Auth, User, Presence) {
         $scope.rooms = Room.all;
         
         $scope.auth = Auth.auth;
         
         $scope.users = User.all;
+        
+        $scope.totalViewers = 0;
+        
+        $scope.$on('onOnlineUser', function() {
+            $scope.$apply(function () {
+                $scope.totalViewers = Presence.getOnlineUserCount();
+            });
+        });
         
         
         $scope.auth.$onAuth(function(authData) {
@@ -30,7 +38,6 @@
 //        $scope.username = User.getUsername($scope.authData);
         
         $scope.addMessage = function(){
-            console.log($scope.authData.uid);
             Message.send({
                 username: User.getUsername($scope.authData),
                 content: $scope.newMessage,
@@ -46,5 +53,5 @@
     
     angular
         .module('angularChat')
-        .controller('HomeCtrl', ['$scope', 'Room', 'Message', 'Auth', 'User', HomeCtrl]);
+        .controller('HomeCtrl', ['$scope', 'Room', 'Message', 'Auth', 'User', 'Presence', HomeCtrl]);
 })();

@@ -4,6 +4,8 @@
         var usersRef = firebaseRef.child('users');
         var users = $firebaseArray(firebaseRef.child('users'));
 
+
+
         
         return  {
             addUser: function(authData, username, isNewUser) {
@@ -16,6 +18,18 @@
                     });
                 }
             },
+//            
+//            getStatus: function() {
+//                console.log(User.$id);
+//                amOnline.on('value', function(snapshot) {
+//                   if (snapshot.val()) {
+//                       userRef.onDisconnect().remove();
+//                       userRef.set(true);
+//                   } 
+//                });
+//                
+//            },
+            
             getProfile: function(uid){
                 return $firebaseObject(usersRef.child(uid));
             },
