@@ -12,7 +12,8 @@
                 <button type="button" ng-show="authData" class="btn btn-primary" ng-click="auth.$unauth()">signout</button>
             </div>
             
-            <h6><small ng-show="authData">{{ totalViewers }} users online</small></h6>
+            <h6><small ng-show="authData">{{ totalViewers }} user(s) online</small></h6>
+            <p> {{ $scope.username }} </p>
             
             <br>
             <div class="nav-pills nav-stacked inline">

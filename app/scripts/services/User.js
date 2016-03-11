@@ -10,25 +10,14 @@
         return  {
             addUser: function(authData, username, isNewUser) {
                 if (authData && isNewUser) {
-                    console.log(authData.uid);
-                    console.log(authData);
+    
                     usersRef.child(authData.uid).set({
                         admin: 'false',
                         username: username
                     });
                 }
             },
-//            
-//            getStatus: function() {
-//                console.log(User.$id);
-//                amOnline.on('value', function(snapshot) {
-//                   if (snapshot.val()) {
-//                       userRef.onDisconnect().remove();
-//                       userRef.set(true);
-//                   } 
-//                });
-//                
-//            },
+
             
             getProfile: function(uid){
                 return $firebaseObject(usersRef.child(uid));

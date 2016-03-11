@@ -4,8 +4,11 @@
         
         $scope.auth = Auth.auth;
         
-        $scope.users = User.all;
+
         
+        $scope.users = User.all;
+
+                
         $scope.totalViewers = 0;
         
         $scope.$on('onOnlineUser', function() {
@@ -17,7 +20,11 @@
         
         $scope.auth.$onAuth(function(authData) {
             $scope.authData = authData;
+
         });
+        
+//        $scope.user = $scope.users.$getRecord($scope.authData.uid).username;
+        
         
         
         $scope.selected = {
@@ -35,7 +42,7 @@
             })
         };
         
-//        $scope.username = User.getUsername($scope.authData);
+    
         
         $scope.addMessage = function(){
             Message.send({
