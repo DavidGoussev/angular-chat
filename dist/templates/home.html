@@ -13,8 +13,8 @@
             </div>
             
             <h6><small ng-show="authData">{{ totalViewers }} user(s) online</small></h6>
-            <p> {{ $scope.username }} </p>
-            
+            <h6><small ng-show="authData" ng-repeat="listUser in listUsers | orderBy:'name'">{{listUser.name}}{{$last ? '' : ', '}}</small></h6>
+        
             <br>
             <div class="nav-pills nav-stacked inline">
                 <li ng-repeat="(roomId, room) in rooms | orderBy:'name'">
@@ -57,7 +57,7 @@
     
         <div class="col-sm-9"> 
             <span>
-                <h3><p class="label label-primary pull-left">{{ selected.room.name }}</p></h3><p ng-show="authData" class="pull-right">logged in with <b>{{ authData.password.email }}</b></p>
+                <h3><p class="label label-primary pull-left">{{ selected.room.name }}</p></h3><p ng-show="authData" class="pull-right"><b>{{ name }}</b> logged in with <b>{{ authData.password.email }}</b></p>
             </span>
                 
             <br>

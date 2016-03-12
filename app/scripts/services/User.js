@@ -4,26 +4,36 @@
         var usersRef = firebaseRef.child('users');
         var users = $firebaseArray(firebaseRef.child('users'));
 
-
-
+        var currentUser = null;
         
         return  {
             addUser: function(authData, username, isNewUser) {
                 if (authData && isNewUser) {
     
                     usersRef.child(authData.uid).set({
-                        admin: 'false',
+                        admin: false,
                         username: username
                     });
                 }
             },
-
-            
+          
             getProfile: function(uid){
                 return $firebaseObject(usersRef.child(uid));
             },
-            getUsername: function(authData){
-                return users.$getRecord(authData.uid).username;
+            getUsername: function(authData, callback){
+                if ( typeof(callback) !== 'function' ) return;
+                
+//                CALLBACK FOR HOMECTRL ORIGINATES HERE:
+                var ref = usersRef.child(authData.uid).child('username');
+                ref.once('value', function(snap) {
+                    callback(snap.val());
+                });
+            },
+            setAuthData: function(user) {
+                currentUser = user;
+            },
+            getAuthData: function() {
+                return currentUser;
             },
             all: users   
         };

@@ -3,29 +3,30 @@
         $scope.rooms = Room.all;
         
         $scope.auth = Auth.auth;
-        
-
-        
+               
         $scope.users = User.all;
-
                 
         $scope.totalViewers = 0;
         
         $scope.$on('onOnlineUser', function() {
             $scope.$apply(function () {
                 $scope.totalViewers = Presence.getOnlineUserCount();
+                $scope.listUsers = Presence.getCurrentUsers();
+                console.log($scope.listUsers);
             });
         });
-        
-        
+               
         $scope.auth.$onAuth(function(authData) {
             $scope.authData = authData;
-
-        });
-        
-//        $scope.user = $scope.users.$getRecord($scope.authData.uid).username;
-        
-        
+            if ( authData != null ) {
+                
+//                CALLBACK FROM USER.JS GOES HERE, AS 2ND ARGUMENT TO getUsername METHOD:::
+                User.getUsername(authData, function(name) {
+                    Presence.setUserStatus(name);
+                    $scope.name = name;
+                });
+            }
+        });        
         
         $scope.selected = {
             room: $scope.rooms[0],
@@ -41,12 +42,10 @@
                 console.log('Room deleted!');
             })
         };
-        
-    
-        
+               
         $scope.addMessage = function(){
             Message.send({
-                username: User.getUsername($scope.authData),
+                username: $scope.name,
                 content: $scope.newMessage,
                 roomId: $scope.selected.room.$id,
                 sentAt: Date(Firebase.ServerValue.TIMESTAMP*1000)
