@@ -5,8 +5,6 @@
         
         return {
             
-//            messages: messages,
-            
             send: function(newMessage) {
                 return messages.$add(newMessage);
                 console.log(newMessage);
