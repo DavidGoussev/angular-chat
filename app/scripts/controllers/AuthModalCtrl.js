@@ -1,8 +1,6 @@
 (function() {
     function AuthOpenCtrl($scope, $uibModal, Auth) {
         
-//        $scope.auth = Auth;
-        
         $scope.openAuth = function() {
             var authInstance = $uibModal.open({
                 templateUrl: '/templates/authModal.html',
@@ -69,8 +67,7 @@
                             $scope.error = "The specified user account does not exist.";
                             break;
                         default:
-                            $scope.error = "Error logging user in: "+error.code;
-                  
+                            $scope.error = "Error logging user in: "+error.code;                  
                 }
             });       
         }
@@ -79,8 +76,6 @@
             $uibModalInstance.close();
             console.log("closed!!!!!");
         };
-        
-
     }
 
     angular
